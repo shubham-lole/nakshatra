@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 0;
+            background-color: #f7f7f7;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+        h1 {
+            color: #333;
+        }
+    </style>
+  </head>
+  <body>
+    <form id="user-input" name="user-input" action="/" method="post">
+      <label for="rashi">Rashi</label></br>
+      <select name="rashi">
+        {%for char in rashis%}
+        <option value="{{char}}" id="{{char}}">{{char}}</option>
+        {%endfor%}
+      </select></br>
+      <label for="nakshatra">Nakshatra</label></br>
+      <select name="nakshatra">
+        {%for char in nakshatras%}
+        <option value="{{char}}" id="{{char}}">{{char}}</option>
+        {%endfor%}
+      </select></br>
+      <label for="datetime">Date and Time</label></br>
+      <input type="datetime-local" name="datetime"></br>
+      <button type="submit" form="user-input">Submit</button>
+    </form>    
+    {%if final%}
+    <table>
+     <tr>
+      <th>Name</th>
+      <th>Start</th>
+      <th>End</th>
+    </tr>
+    {%for li in final%}
+    <tr>
+      <td>{{li["name"]}}</td>
+      <td>{{li["start"]}}</td>
+      <td>{{li["end"]}}</td>
+    </tr>
+    {%endfor%}
+    </table>
+    {%endif%}
+  </body>
+</html>
